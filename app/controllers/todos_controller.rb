@@ -24,17 +24,16 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
-    @todo = Todo.new(todo_params)
-
-    respond_to do |format|
-      if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
-        format.json { render :show, status: :created, location: @todo }
-      else
-        format.html { render :new }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
-    end
+    category = params["category"].downcase
+    name = params['name'].downcase
+    todo = Todo.create({
+        name: name,
+        category: category,
+        times_done: 0,
+        chance_weight: 0,
+        user_id: params["user_id"]
+      })
+    redirect_to request.referrer
   end
 
   # PATCH/PUT /todos/1

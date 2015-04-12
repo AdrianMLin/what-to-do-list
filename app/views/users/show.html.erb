@@ -12,7 +12,27 @@
   <input type="text" ng-model="test">
   {{ test }} <!-- doesn't work when first going over to it, may need ui router -->
 
-
+  <!-- the event input section -->
+  <form action="/users/<%=user.id%>/todos" method="POST">
+    <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+    <input type="hidden" name="user_id" value="<%= user.id %>">
+    <input type="text" name="name" placeholder="Todo name">
+    <input type="text" name="category" placeholder="Category">
+    <button>New Todo</button>
+  </form>
+  
+  
+  <!-- repeat -->
+  <section id="test">
+    <%todos.each do |todo|%>
+      <div>
+        <h3><%= todo.name %></h3>
+        <h4><%= todo.category %></h4>
+        <p>Times done: <%= todo.times_done %></p>
+        <p>Weight: <%= todo.chance_weight %></p>
+      </div>
+    <%end%>
+  </section>
 
 </main>
 
