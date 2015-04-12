@@ -1,4 +1,18 @@
-<p id="notice"><%= notice %></p>
+<main ng-app="timeApp" ng-controller="ProfileController as pCtrl">
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <!-- welcome message appears on profile page if you are this user -->
+  <%if user.id == session[:user_id]%>
+    <p>Welcome to your page!</p>
+  <%end%>
+
+  <h3>email: <%=user.email%></h3>
+
+
+  <!-- this works! -->
+  <input type="text" ng-model="test">
+  {{ test }} <!-- doesn't work when first going over to it, may need ui router -->
+
+
+
+</main>
+

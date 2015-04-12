@@ -1,7 +1,31 @@
 Rails.application.routes.draw do
-  resources :todos
+  
 
-  resources :users
+  resources :users do
+    resources :todos, shallow: true
+  end
+
+  root "home#index"
+  post '/login' => 'session#create'
+  delete '/session' => 'session#destroy'
+
+#          Prefix Verb   URI Pattern                         Controller#Action
+#    user_todos GET    /users/:user_id/todos(.:format)     todos#index
+#               POST   /users/:user_id/todos(.:format)     todos#create
+# new_user_todo GET    /users/:user_id/todos/new(.:format) todos#new
+#     edit_todo GET    /todos/:id/edit(.:format)           todos#edit
+#          todo GET    /todos/:id(.:format)                todos#show
+#               PATCH  /todos/:id(.:format)                todos#update
+#               PUT    /todos/:id(.:format)                todos#update
+#               DELETE /todos/:id(.:format)                todos#destroy
+#         users GET    /users(.:format)                    users#index
+#               POST   /users(.:format)                    users#create
+#      new_user GET    /users/new(.:format)                users#new
+#     edit_user GET    /users/:id/edit(.:format)           users#edit
+#          user GET    /users/:id(.:format)                users#show
+#               PATCH  /users/:id(.:format)                users#update
+#               PUT    /users/:id(.:format)                users#update
+#               DELETE /users/:id(.:format)                users#destroy
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
