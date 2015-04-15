@@ -1,5 +1,5 @@
 <main ng-app="timeApp" ng-controller="ProfileController as pCtrl">
-
+  <input type="hidden" id="session-id" value="<%= session[:user_id] %>">
   <!-- welcome message appears on profile page if you are this user -->
   <%if user.id == session[:user_id]%>
     <p>Welcome to your page!</p>
@@ -23,7 +23,7 @@
   
   
   <!-- repeat -->
-  <section id="test">
+  <section id="todos">
     <%todos.each do |todo|%>
       <div>
         <h3><%= todo.name %></h3>
@@ -32,6 +32,11 @@
         <p>Weight: <%= todo.chance_weight %></p>
       </div>
     <%end%>
+  </section>
+
+  <!-- what should i do? -->
+  <section id="choice-todo">
+    
   </section>
 
 </main>

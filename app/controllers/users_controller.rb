@@ -2,20 +2,29 @@ class UsersController < ApplicationController
 
   def create
 
-    new_user = User.create(
+    user = User.create(
       email: params["email"],
       password: params["password"] # HAS TO BE password, not password_digest
     )
+    respond_to do |format|
+      if user.save
+        format.html { redirect_to user, notice: 'Bob was successfully created.' }
+        format.json { render :show, status: :created, location: user }
+      else
+        format.html { render :new }
+        format.json { render json: user.errors, status: :unprocessable_entity }
+      end
+    end
 
     redirect_to '/'
   end
 
   def index
     users = User.all
-    # respond_to do |format|
-    #   format.json { render :json => users}
-    # end
-    render :index, {locals: {users: users}}
+    respond_to do |format|
+      format.json { render :json => users}
+    end
+    # render :index, {locals: {users: users}}
   end
 
   def new
@@ -28,6 +37,9 @@ class UsersController < ApplicationController
 
     # respond_to do |format|
     #   format.json { render :json => user}
+    # end
+    # respond_to do |format|
+    #   format.json { render :json => todos}
     # end
 
     render :show, {locals: {user: user, todos: todos}}

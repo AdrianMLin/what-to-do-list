@@ -5,6 +5,9 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all
+    respond_to do |format|
+      format.json { render json: @todos }
+    end
   end
 
   # GET /todos/1
@@ -33,6 +36,16 @@ class TodosController < ApplicationController
         chance_weight: 0,
         user_id: params["user_id"]
       })
+
+    respond_to do |format|
+      if todo.save
+        format.html { redirect_to todo, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: todo }
+      else
+        format.html { render :new }
+        format.json { render json: todo.errors, status: :unprocessable_entity }
+      end
+    end
     redirect_to request.referrer
   end
 

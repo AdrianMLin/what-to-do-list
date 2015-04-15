@@ -13,6 +13,14 @@ angular.module('timeApp', ['ui.router'])
 	})
 
 	.controller('ProfileController', function(){
+		var self = this;
+		var userId = $('#session-id').val();
+		var myData = $.get('/users/' + userId + '/todos', function(data){
+			console.log(data);
+		}).done( function(){
+			debugger
+		});
+		self.todos = [];
 
 	})
 ;
