@@ -35,8 +35,18 @@
   </section>
 
   <!-- what should i do? -->
-  <section id="choice-todo">
+  <!-- having this part be angular'd is the eventual goal -->
+<!--   <section id="choice-todo">
+    <p>{{pCtrl.octopus}}</p>
+    <div ng-repeat="item in pCtrl.todoItems track by $index">
+      <p>{{ item.name }}</p>
+    </div>
     
+  </section> -->
+
+  <section id="what-to-do">
+    <button ng-click="pCtrl.whatToDo()">What to do?</button>
+    {{ pCtrl.decision }}
   </section>
 
 </main>

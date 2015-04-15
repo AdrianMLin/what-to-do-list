@@ -14,13 +14,29 @@ angular.module('timeApp', ['ui.router'])
 
 	.controller('ProfileController', function(){
 		var self = this;
+		self.octopus = "octopu!s";
 		var userId = $('#session-id').val();
-		var myData = $.get('/users/' + userId + '/todos', function(data){
+		var myData;
+		self.todoItems;
+
+		$.get('/users/' + userId + '/todos', function(data){
 			console.log(data);
-		}).done( function(){
-			debugger
+			myData = data;
+			self.todoItems = [];
+
+			for (var i = 0; i < myData.length; i++){
+				self.todoItems.push(myData[i]);
+			}
 		});
-		self.todos = [];
+
+		self.decision = "";
+		self.whatToDo = function(){
+			var randIndex = Math.floor(Math.random() * myData.length);
+			var randItem = myData[ randIndex ];
+			var decision = randItem.name;
+			self.decision = decision;
+		}
+
 
 	})
 ;
