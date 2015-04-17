@@ -23,7 +23,7 @@
   
   
   <!-- repeat -->
-  <section id="todos">
+  <section id="todo">
     <%todos.each do |todo|%>
       <div>
         <h3><%= todo.name %></h3>
@@ -33,6 +33,15 @@
       </div>
     <%end%>
   </section>
+
+
+<!--   <div id="todos" ng-repeat="todo in pCtrl.todoItems">
+    <h3>{{ todo.name }}</h3>
+    <h4>{{ todo.category }}</h4>
+    <p>Times done: {{ todo.times_done }}</p>
+    <p>Weight: {{ todo.chance_weight }}</p>
+  </div> -->
+
 
   <!-- what should i do? -->
   <!-- having this part be angular'd is the eventual goal -->
